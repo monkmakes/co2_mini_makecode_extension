@@ -108,7 +108,8 @@ namespace CO2Mini {
     * Compensate for altitude. Specify altitude in metres
     * @param metres altitude in metres.
     */
-    //% blockId=altitude block="Set Altitude"
+    //% blockId=altitude block="set altitude"
+    //% advanced=true
     export function altitude(metres: number): void {
         let message = "m=" + metres + "\r\n"
         //basic.showString(message)
@@ -118,7 +119,8 @@ namespace CO2Mini {
     /**
     * Calibrate to 400ppm
     */
-    //% blockId=calib_400 block="Calibrate 400ppm"
+    //% blockId=calib_400 block="calibrate 400ppm"
+    //% advanced=true
     export function calibrate_400(): void {
         serial.writeString("k")
     }
@@ -126,7 +128,8 @@ namespace CO2Mini {
     /**
     * Full reset to factory defaults
     */
-    //% blockId=factory block="Factory Reset"
+    //% blockId=factory block="factory reset"
+    //% advanced=true
     export function factory_reset(): void {
         serial.writeString("f")
     }
@@ -135,7 +138,8 @@ namespace CO2Mini {
     * Auto-calibrate mode
     * @param auto_calibrate_on auto calibrate
     */
-    //% blockId=auto_cal block="SAuto Calibrate"
+    //% blockId=auto_cal block="auto calibrate"
+    //% advanced=true
     export function auto_calibrate(auto_calibrate_on: boolean): void {
         if (auto_calibrate_on) {
             serial.writeString("A")
