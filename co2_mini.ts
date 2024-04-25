@@ -39,7 +39,7 @@ namespace CO2Mini {
     /**
      * Start the CO2 Mini - this will redirect serial to P1 and P2
      */
-    //% blockId=device_init block="start plant monitor"
+    //% blockId=device_init block="start CO2 Mini"
     export function startMon(): void {
         serial.redirect(
             SerialPin.P2,
@@ -51,7 +51,7 @@ namespace CO2Mini {
     /**
     * Return the CO2 parts per million.
     */
-    //% blockId=device_wetness block="plant wetness"
+    //% blockId=device_wetness block="CO2 ppm"
     export function readCO2(): number {
         serial.writeString("c")
         basic.pause(200)
@@ -62,7 +62,7 @@ namespace CO2Mini {
     /**
     * Return the temperature in degrees C.
     */
-    //% blockId=device_temp block="plant temperature"
+    //% blockId=device_temp block="temperature"
     export function readTemp(): number {
         serial.writeString("t")
         basic.pause(200)
@@ -73,7 +73,7 @@ namespace CO2Mini {
     /**
     * Return the relative humidity as a percentage.
     */
-    //% blockId=device_humidity block="plant humidity"
+    //% blockId=device_humidity block="humidity"
     export function readHumidity(): number {
         serial.writeString("h")
         basic.pause(200)
@@ -83,7 +83,7 @@ namespace CO2Mini {
     /**
     * Turn the LED on
     */
-    //% blockId=device_led_on block="plant monitor LED on"
+    //% blockId=device_led_on block="LED on"
     export function monitor_led_on(): void {
         serial.writeString("L")
     }
@@ -91,7 +91,7 @@ namespace CO2Mini {
     /**
     * Turn the LED off
     */
-    //% blockId=device_led_off block="plant monitor LED off"
+    //% blockId=device_led_off block="LED off"
     export function monitor_led_off(): void {
         serial.writeString("l")
     }
