@@ -42,8 +42,8 @@ namespace CO2Mini {
     //% blockId=device_init block="start CO2 Mini"
     export function startMon(): void {
         serial.redirect(
-            SerialPin.P1,
             SerialPin.P0,
+            SerialPin.P1,
             BaudRate.BaudRate9600
         )
     }
