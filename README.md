@@ -7,7 +7,7 @@ This repository can be added as an **extension** in MakeCode.
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
-* enter the following URL in the search field: https://github.com/monkmakes/co2_mini_makecode_extension
+* enter the following URL in the search field: https://github.com/monkmakes/co2_mini_makecode_extension.git
 
 ## Connecting Your micro:bit
 
