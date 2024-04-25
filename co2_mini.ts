@@ -51,7 +51,7 @@ namespace CO2Mini {
     /**
     * Return the CO2 parts per million.
     */
-    //% blockId=device_wetness block="CO2 ppm"
+    //% blockId=device_co2 block="CO2 ppm"
     export function readCO2(): number {
         serial.writeString("c")
         basic.pause(200)
@@ -94,6 +94,55 @@ namespace CO2Mini {
     //% blockId=device_led_off block="LED off"
     export function monitor_led_off(): void {
         serial.writeString("l")
+    }
+
+    /**
+    * Turn the LED off
+    */
+    //% blockId=device_led_off block="LED off"
+    export function monitor_led_off(): void {
+        serial.writeString("l")
+    }
+
+    /**
+    * Compensate for altitude. Specify altitude in metres
+    * @param metres altitude in metres.
+    */
+    //% blockId=altitude block="Set Altitude"
+    export function altitude(metres: number): void {
+        let message = "m=" + metres + "\r\n"
+        //basic.showString(message)
+        serial.writeString(message)
+    }
+
+    /**
+    * Calibrate to 400ppm
+    */
+    //% blockId=calib_400 block="Calibrate 400ppm"
+    export function calibrate_400(): void {
+        serial.writeString("k")
+    }
+
+    /**
+    * Full reset to factory defaults
+    */
+    //% blockId=factory block="Factory Reset"
+    export function factory_reset(): void {
+        serial.writeString("f")
+    }
+
+    /**
+    * Auto-calibrate mode
+    * @param auto_calibrate_on auto calibrate
+    */
+    //% blockId=auto_cal block="SAuto Calibrate"
+    export function auto_calibrate(auto_calibrate_on: boolean): void {
+        if (auto_calibrate_on) {
+            serial.writeString("A")
+        }
+        else {
+            serial.writeString("a")
+        }
     }
 
 }
