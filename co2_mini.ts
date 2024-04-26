@@ -104,7 +104,7 @@ namespace CO2Mini {
     * Compensate for altitude. Specify altitude in metres
     * @param metres altitude in metres.
     */
-    //% blockId=altitude block="set altitude"
+    //% block
     //% advanced=true
     export function altitude(metres: number): void {
         let message = "m=" + metres + "\r\n"
