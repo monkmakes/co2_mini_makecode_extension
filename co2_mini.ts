@@ -16,6 +16,7 @@ namespace CO2Mini {
     let co2 = -1
     let temp = -1
     let humidity = -1
+    let firmware = -1
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => {
         let response = serial.readUntil(serial.delimiters(Delimiters.NewLine))
@@ -33,6 +34,9 @@ namespace CO2Mini {
         if (response.charAt(0) == 'h') {
             humidity = value
         }
+        if (response.charAt(0) == 'v') {
+            firmware = value
+        }
     })
 
 
@@ -49,7 +53,7 @@ namespace CO2Mini {
     }
 
     /**
-    * Return the CO2 parts per million.
+    * Return the CO2 reading in parts per million.
     */
     //% blockId=device_co2 block="CO2 ppm"
     export function readCO2(): number {
@@ -97,14 +101,6 @@ namespace CO2Mini {
     }
 
     /**
-    * Turn the LED off
-    */
-    //% blockId=device_led_off block="LED off"
-    export function monitor_led_off(): void {
-        serial.writeString("l")
-    }
-
-    /**
     * Compensate for altitude. Specify altitude in metres
     * @param metres altitude in metres.
     */
@@ -135,18 +131,32 @@ namespace CO2Mini {
     }
 
     /**
-    * Auto-calibrate mode
-    * @param auto_calibrate_on auto calibrate
+    * CO2 Mini Firmware version
     */
-    //% blockId=auto_cal block="auto calibrate"
+    //% blockId=version block="firmware version"
     //% advanced=true
-    export function auto_calibrate(auto_calibrate_on: boolean): void {
-        if (auto_calibrate_on) {
+    export function firmware_version(): number {
+        serial.writeString("v")
+        basic.pause(200)
+        return firmware
+    }
+
+    /**
+    * Auto-calibrate mode ON. The lowest reading in 24hrs is assumed to be 400ppm.
+    */
+    //% blockId=auto_cal_on block="auto calibrate on"
+    //% advanced=true
+    export function auto_calibrate_on(): void {
             serial.writeString("A")
-        }
-        else {
-            serial.writeString("a")
-        }
+    }
+
+    /**
+    * Auto-calibrate mode OFF.
+    */
+    //% blockId=auto_cal_off block="auto calibrate off"
+    //% advanced=true
+    export function auto_calibrate_off(): void {
+        serial.writeString("a")
     }
 
 }
