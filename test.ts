@@ -1,43 +1,38 @@
 /*
 Testing:
 This is the same example app as described here:
-https://monkmakes.com/downloads/instructions_pmon_mb.pdf
+https://monkmakes.com/downloads/instructions_co2_mini.pdf
 
-Use the guide above to make the connections between the micro:bit and the Plant Monitor.
+Use the guide above to make the connections between the micro:bit and the CO2 Mini.
 
-Test Procedure:
-1. Once running, the test program will plot a bargraph of the measured moisture on the 25 LEDs of the micro:bit.
-With the Plant Monitor's prong in the air, just 1 LED should be lit, indicating a moisture of 0.
-2. Grip the prong of the Plant Monitor in your hand, and you should see the bargraph rise. With a good
-grip and clammy hands, you'll probably be able to get the reading up to all LEDs (100%). 
-Alternatively, dunk the prong in some water and chek that the reading increases.
-3. Press micro:bit button A. A plausable temperature in degrees C should be displayed.
-4. Press micro:bit button B. A plausable relative humidity in percent should be displayed.
+Test Procedure -- to be carried out in fresh air.
+1. Once running, the test program will display the Firmware version of the CO2 Mini's internal firmware, then turn off the RBG LED for 2 seconds before turning it back on again.
+2. Press button A. The micro:bit display will show the CO2 level, followed by the temperature and then the humidity. The CO2 level should be between 400 and 600 ppm.
+3. Make a note of the CO2 level from step 2 and now press button B. This will set altitude compensation to 1000m. Press button A again and the reported CO2 concentration should go up significantly.
+4. Press buttons A and B simultaneoulsy to reset to factory defaults. Press button A again to check that the CO2 readings have gone back down again.
 */
 
-
 input.onButtonPressed(Button.A, function () {
-    show_wetness = false
-    basic.clearScreen()
-    basic.showNumber(PlantMonitor.readTemp())
+    basic.showString("co2:")
+    basic.showNumber(CO2Mini.readCO2())
     basic.pause(1000)
-    show_wetness = true
+    basic.showString("temp:")
+    basic.showNumber(CO2Mini.readTemp())
+    basic.pause(1000)
+    basic.showString("humidity:")
+    basic.showNumber(CO2Mini.readHumidity())
+})
+input.onButtonPressed(Button.AB, function () {
+    CO2Mini.factory_reset()
 })
 input.onButtonPressed(Button.B, function () {
-    show_wetness = false
-    basic.clearScreen()
-    basic.showNumber(PlantMonitor.readHumidity())
-    basic.pause(1000)
-    show_wetness = true
+    basic.showString("Setting altitude to 1000m")
+    CO2Mini.altitude(1000)
 })
-let show_wetness = false
-PlantMonitor.startMon()
-show_wetness = true
-basic.forever(function () {
-    if (show_wetness == true) {
-        led.plotBarGraph(
-        PlantMonitor.readWetness(),
-        100
-        )
-    }
-})
+CO2Mini.startMon()
+basic.showString("Firmware version:")
+basic.showNumber(CO2Mini.firmware_version())
+basic.pause(2000)
+CO2Mini.monitor_led_off()
+basic.pause(2000)
+CO2Mini.monitor_led_on()
