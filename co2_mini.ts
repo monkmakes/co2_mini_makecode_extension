@@ -141,22 +141,5 @@ namespace CO2Mini {
         return firmware
     }
 
-    /**
-    * Auto-calibrate mode ON. The lowest reading in 24hrs is assumed to be 400ppm.
-    */
-    //% blockId=auto_cal_on block="auto calibrate on"
-    //% advanced=true
-    export function auto_calibrate_on(): void {
-            serial.writeString("A")
-    }
-
-    /**
-    * Auto-calibrate mode OFF.
-    */
-    //% blockId=auto_cal_off block="auto calibrate off"
-    //% advanced=true
-    export function auto_calibrate_off(): void {
-        serial.writeString("a")
-    }
 
 }
