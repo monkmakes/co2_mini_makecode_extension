@@ -13,7 +13,7 @@ This repository can be added as an **extension** in MakeCode.
 
 Your micro:bit uses pins 0 and 1 to communicate with the CO2 Mini's serial interface. Use alligator clip leads to connect your micro:bit and CO2 Mini as shown below.
 
-![Connecting](https://github.com/monkmakes/plant-monitor-makecode/raw/master/connecting.png)
+![Connecting](connecting.png)
 
 
 
