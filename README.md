@@ -18,9 +18,9 @@ Your micro:bit uses pins 0 and 1 to communicate with the CO2 Mini's serial inter
 
 
 ## Example Project
-This example shows the CO2 using the bar graph block. Pressing button A will show the temperature in degrees C and pressing button B, the relative humidity as a percentage.
+This example shows the CO2 updating every 5 seconds. Pressing button A will show the temperature in degrees C and pressing button B, the relative humidity as a percentage.
 
-![A rendered view of the blocks](https://github.com/monkmakes/plant-monitor-makecode/raw/master/.github/makecode/blocks.png)
+![A rendered view of the blocks](example.png)
 
 ## Documentation
 
