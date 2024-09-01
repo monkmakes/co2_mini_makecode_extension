@@ -17,6 +17,8 @@ namespace CO2Mini {
     let temp = -1
     let humidity = -1
     let firmware = -1
+    let has_calibrated = false
+    let has_factory_reset = false
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => {
         let response = serial.readUntil(serial.delimiters(Delimiters.NewLine))
@@ -113,20 +115,28 @@ namespace CO2Mini {
     }
 
     /**
-    * Calibrate to 400ppm
+    * Calibrate to 400ppm. Can only be called once between resets.
     */
     //% blockId=calib_400 block="calibrate 400ppm"
     //% advanced=true
     export function calibrate_400(): void {
+        if (has_calibrated) {
+            return; // can only do this once between resets to save SCD41's eeprom
+        }
+        has_calibrated = true;
         serial.writeString("k")
     }
 
     /**
-    * Full reset to factory defaults
+    * Full reset to factory defaults. Can only be called once between resets.
     */
     //% blockId=factory block="factory reset"
     //% advanced=true
     export function factory_reset(): void {
+        if (has_factory_reset) {
+            return; // can only do this once between resets to save SCD41's eeprom
+        }
+        has_factory_reset = true;
         serial.writeString("f")
     }
 
